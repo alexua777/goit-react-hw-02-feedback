@@ -1,19 +1,19 @@
 import React from "react";
 
 const FeedbackOptions = ({
-  onAddFeedback,
+  onLeaveFeedback, options
  
 }) => (
   <>
    
     <section>
-      <button type="button" onClick={() => onAddFeedback("good")}>
+      <button type="button" onClick={() => onLeaveFeedback(options[0])}>
         Good
       </button>
-      <button type="button" onClick={() => onAddFeedback("neutral")}>
+      <button type="button" onClick={() => onLeaveFeedback(options[1])}>
         Neutral
       </button>
-      <button type="button" onClick={() => onAddFeedback("bad")}>
+      <button type="button" onClick={() => onLeaveFeedback(options[2])}>
         Bad
       </button>
     </section>

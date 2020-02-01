@@ -21,31 +21,31 @@ export default class clientFeedback extends Component {
     });
   };
 
-  TotalFeedback = () => {
-    return this.state["good"] + this.state["neutral"] + this.state["bad"];
-  };
+  TotalFeedback = () =>  this.state["good"] + this.state["neutral"] + this.state["bad"];
 
-  countPositiveFeedbackPercentage = () => {
+
+  countPositiveFeedbackPercentage = (positive, totalV) => {
     return (
-      Math.round(
-        (this.state["good"] /
-          (this.state["good"] + this.state["neutral"] + this.state["bad"])) *
-          100
-      ) + " %"
-    );
+      Math.round((positive / totalV) * 100) + " %");
+    
   };
-
+  
   render() {
+    const total = this.TotalFeedback();
+    const totalPrec = this.countPositiveFeedbackPercentage(this.state["good"], total);
+    console.log(total);
+    
+    
     return (
       <div>
         <Section title={"Please leave feedback"}>
-          <FeedbackOptions onAddFeedback={this.handleFeedback} />
+          <FeedbackOptions options= {Object.keys(this.state)} onLeaveFeedback={this.handleFeedback} />
           <Statistics
             good={this.state["good"]}
             neutral={this.state["neutral"]}
             bad={this.state["bad"]}
-            total={this.TotalFeedback}
-            positivePercentage={this.countPositiveFeedbackPercentage}
+            total={total}
+            positivePercentage={totalPrec}
           />
         </Section>
       </div>
